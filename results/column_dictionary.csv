@@ -1,0 +1,32 @@
+column,description,data_type,range_or_values,non_null,missing,unique_values
+OBJECTID,"Unique row identifier in this extract. It identifies a row, not a separate statistical measure of crime.",int64,"1 to 82,746, one distinct value on every row.",82746,0,82746
+EVENT_UNIQUE_ID,"Police occurrence identifier (GO number). The file is published at offence level, so one identifier can appear on more than one row.",object,"74,604 distinct identifiers. Example: GO-20141262837. 8,142 additional rows reuse an identifier.",82746,0,74604
+REPORT_DATE,"Date the offence was reported. The publisher stores this timestamp in UTC. The clock time is midnight Eastern, not the hour the report was taken.",object,"4,656 distinct values, from 2014-01-01 to 2026-09-30. Clock time is only 4:00:00 AM (55,135 rows), 5:00:00 AM (27,611 rows).",82746,0,4656
+OCC_DATE,"Date the offence occurred, also stored in UTC with the same midnight convention. A few rows contain a date even though the occurrence year, month, and day fields are blank.",object,"4,710 distinct values, from 1969-06-06 to 2026-09-30. Clock time is only 4:00:00 AM (55,090 rows), 5:00:00 AM (27,656 rows). Non-null OCC_YEAR runs from 2000 to 2026.",82746,0,4710
+REPORT_YEAR,Four-digit year of the report date.,int64,"2014 to 2026 (13 years). 2026 is partial: 5,699 rows, January through September.",82746,0,13
+REPORT_MONTH,Month name of the report date.,object,"All 12 month names. Most rows: September (7,391). Fewest rows: February (5,962).",82746,0,12
+REPORT_DAY,Day of the month of the report date.,int64,1 to 31. Mean 15.70.,82746,0,31
+REPORT_DOY,Day of the year of the report date. Leap years use 366.,int64,1 to 366. Mean 184.44.,82746,0,366
+REPORT_DOW,Weekday name of the report date. Each name is padded with spaces to a width of 10 characters.,object,"Seven weekday names, each padded to 10 characters: 'Friday    ', 'Monday    ', 'Saturday  ', 'Sunday    ', 'Thursday  ', 'Tuesday   ', 'Wednesday '. Most rows: Thursday (12,779). Fewest rows: Sunday (9,357).",82746,0,7
+REPORT_HOUR,"Hour the offence was reported, on a 0–23 clock. This is the reporting hour; it is separate from the clock time stored on REPORT_DATE.",int64,"0 to 23. Mean 11.46, median 10, most frequent hour 7 (7,971 rows).",82746,0,24
+OCC_YEAR,Year the offence occurred. Pandas stores it as a float because six rows are blank. The business type is a year.,float64,"2000 to 2026 on 82,740 non-null rows (22 distinct years). Mean 2021.13. Six rows are blank.",82740,6,22
+OCC_MONTH,Month name of the occurrence date. Blank on the same six rows as OCC_YEAR.,object,"All 12 month names on non-null rows. Most rows: September (7,304). Six rows are blank.",82740,6,12
+OCC_DAY,Day of the month of the occurrence. Stored as a float because those six rows are blank.,float64,1 to 31. Mean 15.64. Six rows are blank.,82740,6,31
+OCC_DOY,Day of the year of the occurrence. Stored as a float because those six rows are blank.,float64,1 to 366. Mean 184.17. Six rows are blank.,82740,6,366
+OCC_DOW,"Weekday name of the occurrence. Names are space-padded to 10 characters, and six rows are blank.",object,Same seven space-padded weekday names as REPORT_DOW. Six rows are blank.,82740,6,7
+OCC_HOUR,"Hour the offence occurred, on a 0–23 clock. This field is filled even on rows whose occurrence date components are blank.",int64,"0 to 23. Mean 13.76, median 16, most frequent hour 22 (7,288 rows).",82746,0,24
+DIVISION,Toronto Police division recorded for the occurrence. The value NSA means the row was not assigned to a division.,object,"18 labels: D11, D12, D13, D14, D22, D23, D31, D32, D33, D41, D42, D43, D51, D52, D53, D54, D55, and NSA. Most rows: D23 (11,105). Fewest division: D54 (346). NSA: 414.",82746,0,18
+LOCATION_TYPE,"Detailed place where the offence occurred, such as a parking lot, a house, or a street.",object,"42 categories, plus 18 blank rows. Most common: Parking Lots (Apt., Commercial Or Non-Commercial) (30,164); Single Home, House (Attach Garage, Cottage, Mobile) (24,896); Streets, Roads, Highways (Bicycle Path, Private Road) (15,064). The full list is in results/location_type_counts.csv.",82728,18,42
+PREMISES_TYPE,"Grouped premises category for the location (Outside, House, Commercial, Apartment, Other, Transit, or Educational).",object,"Outside (45,439); House (24,896); Commercial (6,773); Apartment (2,790); Other (2,459); Transit (283); Educational (106).",82746,0,7
+UCR_CODE,Statistics Canada Uniform Crime Reporting code. Every row in this extract is theft of a motor vehicle.,int64,2135 on every row.,82746,0,1
+UCR_EXT,Extension of the UCR code. It is constant in this extract.,int64,210 on every row.,82746,0,1
+OFFENCE,Offence name published with the UCR code.,object,Theft Of Motor Vehicle on every row.,82746,0,1
+CSI_CATEGORY,Community Safety Indicator category used by Toronto Police.,object,Auto Theft on every row.,82746,0,1
+HOOD_158,Neighbourhood code from the City of Toronto 158-area geography. Codes are stored as text and include NSA.,object,"159 distinct text codes, including NSA. Example: 159.",82746,0,159
+NEIGHBOURHOOD_158,"Neighbourhood name under the 158-area geography, with the area number in parentheses. NSA means the row was not assigned to a neighbourhood.",object,"159 labels, including NSA (931 rows). Highest raw count: West Humber-Clairville (1) (6,279 rows).",82746,0,159
+HOOD_140,"Neighbourhood code from the older 140-area geography. Some codes are zero-padded, and NSA is included.",object,"141 distinct text codes, including NSA. Example of zero-padding: 014.",82746,0,141
+NEIGHBOURHOOD_140,"Neighbourhood name under the 140-area geography, including NSA.",object,"141 labels, including NSA. Example: Islington-City Centre West (14).",82746,0,141
+LONG_WGS84,"Longitude in WGS84 decimal degrees. Published points are offset to the nearest intersection. A value of 0 is a placeholder, not a Toronto location.",float64,Valid values -79.639 to -79.122. 891 rows are 0.,82746,0,15925
+LAT_WGS84,Latitude in WGS84 decimal degrees. The same intersection offset and zero-value placeholder apply.,float64,Valid values 43.587 to 43.853. The same 891 rows are 0.,82746,0,15925
+x,"Web Mercator easting in metres, corresponding to LONG_WGS84. Placeholder rows are 0.",float64,"Valid values -8,865,400 to -8,807,826 metres. The same 891 rows are 0.",82746,0,15925
+y,"Web Mercator northing in metres, corresponding to LAT_WGS84. Placeholder rows are 0.",float64,"Valid values 5,401,809 to 5,442,747 metres. The same 891 rows are 0.",82746,0,15923

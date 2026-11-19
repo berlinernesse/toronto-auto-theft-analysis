@@ -1,0 +1,5 @@
+PREMISES_TYPE,Outside,House,Commercial,Apartment
+Outside,1.0,0.92,0.879,0.948
+House,0.92,1.0,0.912,0.819
+Commercial,0.879,0.912,1.0,0.779
+Apartment,0.948,0.819,0.779,1.0
